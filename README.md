@@ -30,3 +30,10 @@ uvicorn main:app --reload
 ```
 127.0.0.1:8000/image-caption
 ```
+**Form data**: file
+
+#### Image VQA
+```
+127.0.0.1:8000/vqa
+```
+**Form data**: file,question (text)
