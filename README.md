@@ -23,3 +23,10 @@ pip install -r requirements.txt
 ```zsh
 uvicorn main:app --reload
 ```
+
+### Test api
+
+#### Image caption
+```
+127.0.0.1:8000/image-caption
+```
