@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from src.modules.caption.handler.caption_handler import router as caption_router
+from src.modules.auth.handler.auth_handler import router as auth_router
 from src.config.database_config import Base,engine
 
 Base.metadata.create_all(bind=engine)
@@ -8,4 +9,5 @@ app = FastAPI(
     description="This is a sample API for demonstrating FastAPI",
     version="1.0.0"
 )
+app.include_router(auth_router,prefix="")
 app.include_router(caption_router,prefix="/caption")

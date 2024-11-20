@@ -26,7 +26,14 @@ pip install -r requirements.txt
 ### Set up enviroment
 
 ```zsh
+API_SECRET_KEY=
+API_KEY=
+API_CLOUD_NAME=
 DATABASE_URL = "postgresql://postgres:<password>@localhost:5432/carla_app"
+SECRET_KEY = "<your-secret-key>"
+ALGORITHM =
+ACCESS_TOKEN_EXPIRE =
+REFRESH_TOKEN_EXPIRE =
 ```
 
 ### Run Database

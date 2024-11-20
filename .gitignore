@@ -4,3 +4,4 @@ flickr30k_images/
 .env
 alembic.ini
 __pycache__/
+**/versions/

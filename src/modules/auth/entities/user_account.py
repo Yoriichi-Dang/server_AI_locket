@@ -1,11 +1,12 @@
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, TIMESTAMP, Text
-from sqlalchemy.orm import relationship, sessionmaker
-from src.config.database_config import Base
+from sqlalchemy import Column, Integer, String, TIMESTAMP,ForeignKey
 from datetime import datetime
+from src.config.database_config import Base
+from sqlalchemy.orm import relationship
 
 class UserAccount(Base):
     __tablename__ = 'users_account'
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    
+    id = Column(Integer, ForeignKey('users_login_data.id'), primary_key=True)  # UserAccount.id is a ForeignKey that refers to UsersLoginData.id
     username = Column(String)
     avatar_url = Column(String)
     address = Column(String)
@@ -16,8 +17,9 @@ class UserAccount(Base):
     created_at = Column(TIMESTAMP, default=datetime.utcnow)
     updated_at = Column(TIMESTAMP, onupdate=datetime.utcnow)
 
-    # Relationship
-    login_data = relationship("UsersLoginData", backref="user_account", uselist=False)
-    posts = relationship("UserPosts", backref="user_account")
-    followers = relationship("UsersRelationship", foreign_keys="[UsersRelationship.user_id]", backref="follower", cascade="all, delete-orphan")
-    followed = relationship("UsersRelationship", foreign_keys="[UsersRelationship.user_followed_id]", backref="followed", cascade="all, delete-orphan")
+    # # One-to-many relationship: One user can have multiple posts
+    # posts = relationship("UserPosts", backref="user_account", cascade="all, delete-orphan")
+    
+    # # One-to-many relationship for followers and followed users
+    # followers = relationship("UsersRelationship", foreign_keys="[UsersRelationship.user_id]", backref="follower", cascade="all, delete-orphan")
+    # followed = relationship("UsersRelationship", foreign_keys="[UsersRelationship.user_followed_id]", backref="followed", cascade="all, delete-orphan")
