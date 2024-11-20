@@ -1,2 +1,6 @@
 venv/
 uploaded_images/
+flickr30k_images/
+.env
+alembic.ini
+__pycache__/
