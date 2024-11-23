@@ -4,8 +4,8 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from src.config.database_config import Base
 from src.modules.auth.entities import user_account,user_login_data
-# from src.modules.caption.entities import post_caption,post_reaction_list,user_posts,post_reaction
-# from src.modules.profile.entities import users_relationship
+from src.modules.caption.entities import post_caption,post_reaction_list,user_posts,post_reaction
+from src.modules.profile.entities import users_relationship
 from alembic import context
 
 # this is the Alembic Config object, which provides

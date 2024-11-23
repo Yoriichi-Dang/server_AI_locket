@@ -74,7 +74,7 @@ async def login(user_login:UserLogin,response: Response,db:Session=Depends(conne
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-@router.post('/refresh-token',tags=['Authenticate'])
+@router.post('/refresh_token',tags=['Authenticate'])
 async def refresh_token(request:Request):
     try:
         refresh_token=request.cookies.get('refresh_token')

@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, TIMESTAMP, Text
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, TIMESTAMP, Text, UniqueConstraint
 from sqlalchemy.orm import relationship, sessionmaker
 from src.config.database_config import Base
 from datetime import datetime
@@ -15,3 +15,8 @@ class UsersRelationship(Base):
     # Relationships to UserAccount (followers and followed users)
     user = relationship("UserAccount", foreign_keys=[user_id], backref="followers")
     followed_user = relationship("UserAccount", foreign_keys=[user_followed_id], backref="followed_by")
+
+    # Ensure that each pair of user_id and user_followed_id is unique
+    __table_args__ = (
+        UniqueConstraint('user_id', 'user_followed_id', name='_user_followed_uc'),
+    )

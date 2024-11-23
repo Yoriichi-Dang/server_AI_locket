@@ -35,18 +35,12 @@ class CaptionService:
         # Initialize the retrieval pipeline
         model = 'damo/mplug_image-text-retrieval_flickr30k_large_en'
         pipeline_retrieval = pipeline(Tasks.image_text_retrieval, model=model)
-
-        # Define image file paths and the query
         images = image_inputs
         query = question_input
-
-        # Perform retrieval by comparing the query with each image
         results = []
         for image_path in images:
             input_data = {'image': image_path, 'question': query}
             result = pipeline_retrieval(input_data)
-            results.append({'image': image_path, 'score': result['scores'][1]})  # Adjust index for score if necessary
-
-        # Find the image with the highest score
+            results.append({'image': image_path, 'score': result['scores'][0]})  # Adjust index for score if necessary
         best_result = max(results, key=lambda x: x['score'])
         return best_result["image"]

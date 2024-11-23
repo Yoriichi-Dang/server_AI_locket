@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from src.modules.auth.dtos.auth_dto import UserRegister,UserLogin
 from src.modules.auth.models.user_model import UserModel
 from src.utils.auth import verify_password
-
+from src.errors.auth import InvalidPasswordException
 
 class AuthService:
     def __init__(self,db: Session):
@@ -40,4 +40,6 @@ class AuthService:
                 gender=user.gender,
                 avatar_url=user.avatar_url,
             )
-            return user_model              
+            return user_model    
+        else:
+            raise InvalidPasswordException("Password does not match.")  # Or return a custom message here

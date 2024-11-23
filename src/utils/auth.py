@@ -49,6 +49,15 @@ def create_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
 def decode_access_token(token: str):
     try:
         payload = jwt.decode(token, config_auth.secret_key, algorithms=[config_auth.algorithm])
+        
+        # Check if token is expired
+        if 'exp' in payload:
+            expiration_time = payload['exp']
+            current_time = datetime.utcnow().timestamp()
+            
+            if current_time > expiration_time:
+                return None  # Token has expired
+        
         return payload
     except jwt.PyJWTError:
         return None

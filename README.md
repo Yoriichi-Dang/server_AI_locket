@@ -1,5 +1,9 @@
 # Create AI Server with FASTAPI for Image captioning
 
+## About Project
+
+App use for OCR and captioning image
+
 ## Set up enviroment
 
 **Version of python on mac** : python 3.9

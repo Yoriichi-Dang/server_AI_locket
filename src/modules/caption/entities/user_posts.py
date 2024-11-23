@@ -1,5 +1,5 @@
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, TIMESTAMP, Text
-from sqlalchemy.orm import relationship, sessionmaker
+from sqlalchemy import Column, Integer, ForeignKey, TIMESTAMP
+from sqlalchemy.orm import relationship
 from src.config.database_config import Base
 from datetime import datetime
 
@@ -13,5 +13,4 @@ class UserPosts(Base):
     updated_at = Column(TIMESTAMP, onupdate=datetime.utcnow)
 
     # Relationships
-    user_account = relationship("UserAccount", backref="user_posts")
-    post_caption = relationship("PostCaption", backref="user_posts")
+    user = relationship("UserAccount", back_populates="posts")
